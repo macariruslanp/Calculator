@@ -1,6 +1,8 @@
 package rusmacari;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
 /**
@@ -20,5 +22,16 @@ public class CalculatorTest {
 	@Test
 	public void testMultiply() {
 		assertEquals(Calculator.multiply(2, 3), 6);
+	}
+	
+	@Test
+	public void testDivide() {
+		assertEquals(Calculator.divide(10, 5), 2);
+		try {
+			Calculator.divide(10, 0);
+			fail("IllegalArgumentException must be thrown");
+		} catch (IllegalArgumentException e) {
+			
+		}
 	}
 }
