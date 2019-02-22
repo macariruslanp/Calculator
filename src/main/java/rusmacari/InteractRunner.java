@@ -6,10 +6,12 @@ public class InteractRunner {
 	
 	private boolean running = true;
 	Scanner scanner;
+	Calculator calc;
 	
 	public InteractRunner(Scanner scanner) {
 		super();
 		this.scanner = scanner;
+		calc = new Calculator();
 	}
 
 	public static void main(String[] args) {
@@ -31,7 +33,7 @@ public class InteractRunner {
 		int first = scanner.nextInt();
 		System.out.println("Enter second arg:");
 		int second = scanner.nextInt();
-		Calculator calc = new Calculator(first, second);
+		calc.setArgs(first, second);
 		calc.plus();
 		System.out.println("plus result: " + calc.getResult());
 		calc.diff();
