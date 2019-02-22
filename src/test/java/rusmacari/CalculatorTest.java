@@ -1,37 +1,50 @@
 package rusmacari;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 
 /**
  * Unit test for Calculator class.
  */
 public class CalculatorTest {
+	
+	private Calculator calc;
+	
+	public CalculatorTest() {
+		calc = new Calculator(10, 5);
+	}
+
 	@Test
 	public void calcFivePlusSix() {
-		assertEquals(Calculator.calc(5, 6), 11);
+		calc.plus();
+		assertResult(15);
 	}
 	
+	private void assertResult(int expected) {
+		assertEquals(expected, calc.getResult());
+	}
+
 	@Test
 	public void diffNineMinus3() {
-		assertEquals(Calculator.diff(9, 3), 6);
+		calc.diff();
+		assertResult(5);
 	}
 	
 	@Test
 	public void testMultiply() {
-		assertEquals(Calculator.multiply(2, 3), 6);
+		calc.multiply();
+		assertResult(50);
 	}
 	
 	@Test
 	public void testDivide() {
-		assertEquals(Calculator.divide(10, 5), 2);
-		try {
-			Calculator.divide(10, 0);
-			fail("IllegalArgumentException must be thrown");
-		} catch (IllegalArgumentException e) {
-			
-		}
+		calc.divide();
+		assertEquals(2.0, calc.getResultDiv(), 0.001);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void divideRuntimeException() {
+		calc.setArgs(10, 0);
+		calc.divide();
 	}
 }
